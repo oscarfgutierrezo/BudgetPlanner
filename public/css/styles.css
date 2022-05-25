@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background: linear-gradient(to right, #0083B0, #6374B9);
+}
+
+section {
+    max-width: 1200px;
+}
+
+p {
+    margin: 0;
+}
+
+.request-budget__btn, .add-expences__btn {
+    background-color: #6374B9;
+    transition-duration: 0.3s;
+}
+
+.request-budget__btn:hover ,.add-expences__btn:hover {
+    background-color: #5263a8;
+}
+
+.budget-container {
+    background-color: #0083B0;
+}
+
+.balance-container {
+    background-color: #00BEB6;
+}
+
+@media (min-width: 576px) {
+    .request-budget__btn {
+        max-width: 100px
+    }
+    .add-expences__btn {
+        max-width: 200px;
+    }
+}
+
+@media (min-width: 768px) {
+    .request-budget input {
+        max-width: 350px;
+    }
+}
