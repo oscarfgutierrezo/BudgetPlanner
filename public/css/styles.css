@@ -13,16 +13,32 @@ p {
     margin: 0;
 }
 
-.request-budget__btn, .add-expences__btn {
+.text-attention {
+    color: #EC992A;
+}
+
+.div-success {
+    background-color: #00BEB6;
+}
+
+.div-warning {
+    background-color: #EC992A;
+}
+
+.div-danger {
+    background-color: #CD5055;
+}
+
+.request-budget__btn, .add-expences__btn, .reset-btn {
     background-color: #6374B9;
     transition-duration: 0.3s;
 }
 
-.request-budget__btn:hover, .add-expences__btn:hover {
+.request-budget__btn:hover, .add-expences__btn:hover, .reset-btn:hover {
     background-color: #5263a8;
 }
 
-.request-budget__btn:focus, .add-expences__btn:focus {
+.request-budget__btn:focus, .add-expences__btn:focus, .reset-btn:focus {
     background-color: #5263a8;
 }
 
@@ -39,10 +55,6 @@ p {
 
 .budget-container {
     background-color: #0083B0;
-}
-
-.balance-container {
-    background-color: #00BEB6;
 }
 
 .request-budget__container span {
@@ -81,8 +93,8 @@ p {
     .request-budget__btn {
         max-width: 100px
     }
-    .add-expences__btn {
-        max-width: 200px;
+    .add-expences__btn, .reset-btn {
+        max-width: 150px;
     }
 }
 
