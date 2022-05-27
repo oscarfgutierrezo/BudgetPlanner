@@ -12,87 +12,47 @@
     <div class="container my-5">
         <h1 class="pb-5 display-3 fw-normal text-white text-center">Budget Planner</h1>
         <div class="container">
-            <section class="row mx-auto px-2 py-5 bg-white rounded-4 shadow px-sm-5">
-                <div class="request-budget col-12 mb-5">
-                    <div class="mb-4 d-flex flex-column align-items-center gap-2 text-center">
+            <section class="row mx-auto px-2 py-5 bg-white rounded-4 shadow px-sm-4 px-md-5">
+                <div class="request-budget__container col-12 mb-5 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3" id="request-budget__container">
+                    <div class="mb-1 d-flex flex-column align-items-center gap-2 text-center">
                         <label class="h2" for="">What is your budget?</label>
-                        <div class="w-100 d-flex flex-column justify-content-center align-items-center gap-1 flex-sm-row">
-                            <input class="w-100 px-3 py-1 border rounded-1" type="text" placeholder="$">
-                            <button class="w-100 request-budget__btn btn py-1 text-white" type="submit">Ok</button>
-                        </div>
+                        <form class="w-100 d-flex flex-column justify-content-center align-items-center gap-2 flex-sm-row" id="request-budget__form">
+                            <input class="w-100 px-3 py-1 border rounded-2" id="user-budget" type="text" placeholder="$">
+                            <button class="request-budget__btn btn w-100 py-1 text-white" type="submit">Ok</button>
+                        </form>
                     </div>
-                    <div class="d-flex flex-column gap-2 text-white flex-sm-row justify-content-center gap-sm-5">
+                    <div class="pt-3 d-flex flex-column flex-wrap justify-content-evenly gap-2 text-white flex-sm-row">
                         <div class="budget-container px-3 py-1 rounded-2">
-                            <p>Budget: $</p>
+                            <p class="d-flex justify-content-between align-items-center">Budget: &nbsp<span id="budget"></span></p>
                         </div>
                         <div class="balance-container px-3 py-1 rounded-2">
-                            <p>Balance: $</p>
+                            <p class="d-flex justify-content-between align-items-center">Balance: &nbsp<span id="balance"></span></p>
                         </div>
                     </div>
                 </div>
-                <div class="add-expences col-12 mb-5 col-md-6 col-xl-5 offset-xl-1">
-                    <form class="d-flex flex-column gap-3" action="">
+                <div class="add-expences__container col-12 mb-5 col-md-6 col-xl-4 offset-xl-1">
+                    <form class="d-flex flex-column gap-3" id="add-expences__form" action="#">
                         <h3 class="text-center">Add your expences here</h3>
                         <div>
-                            <label for="">Expence</label>
-                            <input class="w-100 mt-2 px-3 py-1 border rounded-1" type="text" name="" id="" placeholder="Name">
+                            <label for="cantidad">Expence</label>
+                            <input class="w-100 mt-2 px-3 py-1 border rounded-2" type="text" id="expence" placeholder="Name">
                         </div>
                         <div>
-                            <label for="">Amount</label>
-                            <input class="w-100 mt-2 px-3 py-1 border rounded-1" type="text" name="" id="" placeholder="$">
+                            <label for="cantidad">Amount</label>
+                            <input class="w-100 mt-2 px-3 py-1 border rounded-2" type="text" id="amount" placeholder="$">
                         </div>
-                        <button class="add-expences__btn btn w-100 mx-auto py-1 text-white" type="submit">Add</button>
+                        <button class="add-expences__btn btn w-100 mx-auto py-1 text-white" id="add-expences__btn" type="submit">Add</button>
                     </form>
                 </div>
-                <div class="expences-list col-12 col-md-6 col-xl-5">
-                    <h3 class="text-center">Expences List</h3>
+                <div class="expences__container col-12 col-md-6 col-xl-4 offset-xl-2">
+                    <h3 class="text-center">Expences <br> List</h3>
                     <div>
-                        <ul></ul>
+                        <ul class="mt-4 list-group list-group-flush" id="expences__list"></ul>
                     </div>
                 </div>
             </section>
         </div>
-        
-
-
-        <!-- <section class="mx-0 row justify-content-center px-4 py-5 bg-white rounded-4 shadow">
-            <div class="request-budget col-12 mb-5 col-md-10 col-lg-8">
-                <div class="mb-3 row justify-content-center gap-2 text-center">
-                    <label class="h2" for="">What is your budget?</label>
-                    <input class="col-12 px-3 py-2 border rounded-1 col-sm-8 col-md-6" type="text" placeholder="$">
-                </div>
-                <div class="row justify-content-around align-items-center text-white">
-                    <div class="budget-container mb-2 px-3 py-1 rounded-2 col-sm-5 mb-sm-0">
-                        <p>Budget: $</p>
-                    </div>
-                    <div class="balance-container col-12 px-3 py-1 rounded-2 col-sm-5 ">
-                        <p>Balance: $</p>
-                    </div>
-                </div>
-            </div>
-            <div class="add-expences col-12 mb-5 col-md-6 mb-md-0">
-                <form class="row gap-3" action="">
-                    <h3 class="text-center">Add your expences here</h3>
-                    <div>
-                        <label for="">Expence</label>
-                        <input class="w-100 mt-2 px-3 py-1 border rounded-1" type="text" name="" id="" placeholder="Name">
-                    </div>
-                    <div>
-                        <label for="">Amount</label>
-                        <input class="w-100 mt-2 px-3 py-1 border rounded-1" type="text" name="" id="" placeholder="$">
-                    </div>
-                    <button class="add-expences__btn py-1 btn text-white" type="submit">Add</button>
-                </form>
-            </div>
-            <div class="expences-list col-12 col-md-6">
-                <h3 class="text-center">Expences List</h3>
-                <div>
-                    <ul></ul>
-                </div>
-            </div>
-        </section> -->
     </div>
-    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous""></script>
     <script src="./public/js/app.js"></script>

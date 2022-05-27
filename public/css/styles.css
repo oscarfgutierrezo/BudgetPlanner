@@ -18,8 +18,23 @@ p {
     transition-duration: 0.3s;
 }
 
-.request-budget__btn:hover ,.add-expences__btn:hover {
+.request-budget__btn:hover, .add-expences__btn:hover {
     background-color: #5263a8;
+}
+
+.request-budget__btn:focus, .add-expences__btn:focus {
+    background-color: #5263a8;
+}
+
+.request-budget__btn:disabled, .add-expences__btn:disabled {
+    background-color: #6374B9;
+    opacity: 0.65;
+    pointer-events: auto;
+    cursor: not-allowed;
+}
+
+.add-expences__btn:disabled:hover {
+    background-color: #6374B9;
 }
 
 .budget-container {
@@ -28,6 +43,38 @@ p {
 
 .balance-container {
     background-color: #00BEB6;
+}
+
+.request-budget__container span {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.expences__container br {
+    display: none;
+}
+
+.expences__container li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+.expences__container span {
+    background-color: #0083B0;
+    padding: 3px 10px;
+    color: white;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.remove-btn {
+    background-color: transparent;
+    color:red;
+    font-size: 24px;
+    font-weight: 700;
+    border: none;
 }
 
 @media (min-width: 576px) {
@@ -42,5 +89,8 @@ p {
 @media (min-width: 768px) {
     .request-budget input {
         max-width: 350px;
+    }
+    .expences__container br {
+        display: block;
     }
 }
