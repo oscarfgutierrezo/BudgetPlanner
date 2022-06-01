@@ -101,6 +101,8 @@ class UI {
         document.querySelector("#budget").textContent = `$${budgetPoints}`;
         document.querySelector("#balance").textContent = `$${balancePoints}`;
 
+        syncUpLocalStorage("budget", budget);
+
         // Resetear formulario
         requestBudget.reset();
     }
@@ -155,6 +157,8 @@ class UI {
 
             // Mostrar la información del gasto en el DOM
             expencesList.appendChild(newExpence);
+
+            syncUpLocalStorage("expences", JSON.stringify(expences));
         }) 
     }
 
@@ -213,6 +217,48 @@ let userBudget;
 function initApp() {
     // Desabilitar el bóton para agregar nuevos gastos  
     addExpenceForm.querySelector("button[type='submit']").disabled = true;
+
+    // Instanciar userBudget
+    userBudget = new UserBudget();
+
+    // Ejecutar funciones si la llave budget existe en el LocalStorage
+    if (localStorage.budget) {
+        getLocalStorageBudget();
+    }
+
+    // Ejecutar funciones si la llave expences existe en el LocalStorage
+    if (localStorage.expences) {
+        getLocalStorageExpences()
+    }
+    
+}
+
+function getLocalStorageBudget() {
+    // Trae el presupuesto guardado en el LocalStorage
+    const localStorageBudget = Number(localStorage.getItem("budget"));
+
+    // Instanciar userBudget a partir del presupuesto traido del Local Storage. El presupuesto se convierte en el valor de this.budget y this.balance
+    userBudget = new UserBudget(localStorageBudget);
+
+    // Insertar el presupuesto en el DOM
+    ui.insertUserBudget(userBudget);
+
+    // Habilitar el botón Add para agregar gastos
+    addExpenceForm.querySelector("button[type='submit']").disabled = false;
+
+    // Desabilitar el botón Ok para agregar presupuesto
+    requestBudget.querySelector("button[type='submit']").disabled = true;
+}
+
+function getLocalStorageExpences() {
+    const localStorageExpences = JSON.parse(localStorage.getItem("expences"));
+    localStorageExpences.forEach(expence => {
+        userBudget.newExpence(expence);
+    })
+    const {expences, balance} = userBudget;
+    ui.showExpences(expences);
+    ui.toUpdateBalance(balance);
+    ui.checkBudget(userBudget);
 }
 
 function catchBudget(evt) {
@@ -236,9 +282,10 @@ function catchBudget(evt) {
         // Insertar el presupuesto en el DOM
         ui.insertUserBudget(userBudget);
 
-        // Habilitar el botón OK
+        // Habilitar el botón Add para agregar gastos
         addExpenceForm.querySelector("button[type='submit']").disabled = false;
 
+        // Desabilitar el botón Ok para agregar presupuesto
         requestBudget.querySelector("button[type='submit']").disabled = true;
     }
 }
@@ -293,6 +340,8 @@ function removeExpence(id) {
     // Destructuring sobre el objeto userBudget
     const {expences, balance} = userBudget;
 
+    syncUpLocalStorage("expences", JSON.stringify(expences));
+
     // Mostrar en el DOM los gastos sin el objeto eliminado
     ui.showExpences(expences);
 
@@ -307,6 +356,7 @@ function numberPoints(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') // Expresión regular para agregar puntos cada 3 dígitos
 }
 
+// Establecer color de fuente en las alertas según su tipo
 function alertColor(alert, type) {
     if(type === "error") {
         alert.classList.add("text-danger");
@@ -317,6 +367,13 @@ function alertColor(alert, type) {
     }
 }
 
+// Recargar página
 function resetPage() {
+    localStorage.clear();
     window.location.reload();
+}
+
+// Enviar datos al LocalStorage
+function syncUpLocalStorage (name, data) {
+    localStorage.setItem(name, data);
 }
